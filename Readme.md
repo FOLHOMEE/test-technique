@@ -1,31 +1,44 @@
 # Test technique
 
-Ce test est destiné à évaluer ta logique et ton niveau de compétences / reflexion. Prend ton temps pour le faire correctement, la forme est aussi importante que le fond. N'hésites pas à détailler ta démarche.
+## Exercices :
 
+### Algo
 
-## Recommandations :
+Créer une fonction javascript permettant d'obtenir le chiffre le plus proche de zéro au sein d'un tableau de valeurs ex : `closeToZero( [ 10, 7, -3, 4.5, -1.3, 579 ] ) // retourne -1.3`
 
-- On code en ES6 minimum et on cherche à simplifier son code tout en le gardant clair.
-- Si il y a des commentaires dans ton code, c'est mieux ;)
+### MongoDB
 
+Tu dispose de la collection "ads" suivante :
 
-## Exercices : 
+```
+{ _id: 1, title: 'Appartement 40m2 dans Paris 15', price: 405000, type: 'apartment', assets:['last-floor']  },
+{ _id: 2, title: 'Appartement 54m2 dans Paris 20', price: 399000, type: 'apartment', assets:[]  },
+{ _id: 3, title: 'Maison de campagne', price: 232000, type: 'house', assets:['country-side', 'refresh']  },
+{ _id: 4, title: 'Maison avec piscine', price: 321900, type: 'house', assets:['swimmingpool', 'refresh']  },
+```
 
+A l'aide de requêtes ou d'aggregats, tu dois obtenir les résultats suivants :
 
-### Lecture de code
-
-Après la lecture de ce code, explique clairement ce que fait la fonction "reduce" et quel est le résultat final.
-
-``` 
-[ 0, 1, 2, 3, 4 ].reduce( ( acc, curr ) => acc + curr, 10);
-``` 
-
-
-### Algo 
-
-Créer une fonction javascript permettant d'obtenir le chiffre le plus proche de zéro au sein d'un tableau de valeurs ex : trololo( [ 10, 7, -3, 4.5, -1.3, 579 ] ) // retourne -1.3
-
+1. Obtenir la somme des prix des appartements (pas des maisons)
+2. Obtenir un tableau contenant la liste des `assets` sans doublon
+3. Obtenir la liste des annonces qui possèdent le mot "campagne" dans le titre (sans tenir compte de la casse)
 
 ### NodeJS
 
-Etant développeur au sein de la société, on te demande de créer un projet NodeJS "from scratch". Tu dois créer un serveur web possédant une page `GET /scrap` qui, coté back, fait une requête pour récupérer le code HTML de la page `https://www.folhomee.fr/` et l'affiche coté front dans un `textarea`. Décris les différentes étapes de création de ton projet et écris le code nécessaire pour réaliser la tâche. Tu peux utiliser les librairies de ton choix et fournir le code sur un github (ou autre). Si tu as des questions, tu peux les poser au chef de projet, mais malheureusement il n'est pas très technique : `julien@folhomee.fr`
+Tu hérite du code suivant. A l'aide de la librairie `express`, tu dois créer une nouvelle route en POST `/scrapping`. En appelant cette route, l'application doit récupérer le texte HTML de la page `https://www.folhomee.fr`. Avec l'aide d'une librairie de ton choix, tu dois aller chercher le `content` de la balise meta `google-site-verification` et finalement l'afficher en retour.
+
+```
+const express = require('express')
+const request = require('request')
+const app = express()
+
+// Si aucune route ne match, on affiche un message
+app.use((req, res) => res.send('Erreur...'))
+
+// On lance le serveur
+app.listen(3000)
+```
+
+### React
+
+A l'aide du serveur node précédement réaliser, tu doit créer une petite application React qui va contenir un bouton. Lorsqu'on clique sur le bouton, ça doit appeler la route que tu as créé pour récupérer le contenu de la mete `google-site-verification` du site Folhomee.
