@@ -25,7 +25,20 @@ A l'aide de requêtes ou d'aggregats, tu dois obtenir les résultats suivants :
 
 ### NodeJS
 
-Tu hérite du code suivant. A l'aide de la librairie `express`, tu dois créer une nouvelle route en POST `/scrapping`. En appelant cette route, l'application doit récupérer le texte HTML de la page `https://www.folhomee.fr`. Avec l'aide d'une librairie de ton choix, tu dois aller chercher le `content` de la balise meta `google-site-verification` et finalement l'afficher en retour.
+Tu hérite du code suivant. A l'aide de la librairie `express`, tu dois créer deux nouvelles routes.
+
+La première `GET /scrapping` qui doit récupérer le texte HTML de la page `https://www.folhomee.fr`. Avec l'aide d'une librairie de ton choix, tu dois aller chercher le `content` de la balise meta `google-site-verification` qui se trouve dans le code HTML et finalement l'afficher en retour.
+
+La deuxième `POST /auth` qui doit recevoir un login et mot de passe en paramètre et qui doit les vérifier avec ceux présent dans un fichier JSON qui ressemble à ceci :
+
+```
+{
+  "login": "admin",
+  "password": "leMotDePasseSecur!",
+}
+```
+
+Tu dois créer le fichier JSON et le lire avec la méthode de ton choix. Si les informations correspondent, tu retourne le JSON `{ "access": true }`, sinon tu retourne le JSOn `{ "access": false }`.
 
 ```
 const express = require('express')
@@ -41,4 +54,4 @@ app.listen(3000)
 
 ### React
 
-A l'aide du serveur node précédement réaliser, tu doit créer une petite application React qui va contenir un bouton. Lorsqu'on clique sur le bouton, ça doit appeler la route que tu as créé pour récupérer le contenu de la mete `google-site-verification` du site Folhomee.
+A l'aide du serveur node précédement réaliser, tu doit créer une petite application React qui va contenir un formulaire avec des champs de saisi "Login" et "Mot de passe". Lorsqu'on valide le formulaire, ça doit appeler la route `POST /auth` que tu as créé pour authentifier l'utilisateur. Si les informations sont correctes, tu affiche un message de validation, sinon un message d'erreur.
